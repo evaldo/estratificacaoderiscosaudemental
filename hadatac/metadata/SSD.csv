@@ -1,0 +1,10 @@
+sheet,hasURI,type,hasSOCReference,comment,label,definition,groundingLabel,isMemberOf,hasScope,hasTimeScope,hasSpaceScope,cardinality,role,basetime,source
+,kb:ER_1,hasco:Study,,,,,,,,,,,,,
+#SOC-SUBJECTS,kb:SOC-SUBJECTS,hasco:SubjectGroup,??paciente,"paciente, o principal assunto do estudo",Paciente,São pessoas que apresentam sinais e sintomas relacionados a transtornos mentais e que são submetidos à estratificação de risco ao se apresentarem no Hospital,Paciente,kb:ER_1,,,,,,,
+,,,??dadodeinternacao,dados pessoais e dados administrativos da internação,Dado de Internação,"Diferentes dados sobre a internação. Dados pessoais, ou dados para uso administrativo no Hospital, tais como: data de admissão ou previsão de alta",,kb:ER_1,,,,,,,
+,,,??dadoclinico,dados sobre os sinais e sintomas apresentados pelo paciente,Dado Clinico,Dados Clínicos,,kb:ER_1,,,,,,,
+,,,??elementoquestionario,"campos, questões ou grupo de questões que compõem o questionário da estratificação",Elemento do Questionário,Elemento do Questionário,,kb:ER_1,,,,,,,
+,,,??questaorespondesintomatologia,"questão relacionada à sintomatologia, interpretação do conjunto de sinais e sintomas observados no exame de um paciente",Sintomatologia,Questão sobre Sintomatologia,,kb:ER_1,,,,,,,
+,,,??questao,questão respondida pelo peciente,Questão ,Questão,Questão,kb:ER_1,,,,,,,
+,,,??questaoresponderiscoparasieoutros,questão relacionada ao risco paciente para si e com outros.,Oferece risco,"Questão relacionada à analise do profissional que aplica a estratificação, se o Paciente oferece risco para si e outros",,kb:ER_1,,,,,,,
+,,,??parametrodevulnerabilidade,"dado de internação ou dado clínico relacionado à algum tipo de vulnerabilidade, ou vulnerabilidade social",Parâmetro de Vulnerabilidade,Parâmetro de Vulnerabilidade,Parâmetro,kb:ER_1,,,,,,,

@@ -1,0 +1,138 @@
+--Questão 1. Quais questões foram respondidas por grupo? 
+prefix np: <http://www.nanopub.org/nschema#> 
+prefix owl: <http://www.w3.org/2002/07/owl#> 
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix prov: <http://www.w3.org/ns/prov#> 
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix uo: <http://purl.obolibrary.org/obo/UO_> 
+prefix sio: <http://semanticscience.org/resource/> 
+prefix stato: <http://purl.obolibrary.org/obo/STATO_> 
+prefix chear: <http://hadatac.org/ont/chear#> 
+prefix hasco: <http://hadatac.org/ont/hasco#> 
+prefix obo: <http://purl.obolibrary.org/obo/> 
+prefix skos: <http://www.w3.org/2008/05/skos#> 
+prefix osm: <http://www.w3.org/2008/05/osm#> 
+prefix oersm: <http://hadatac.org/ont/oersm#> 
+prefix schema: <http://www.w3.org/2000/01/schema#> 
+
+SELECT DISTINCT ?questao (substr(xsd:string(?questao), 30, 6) AS ?grupodequestao)
+WHERE {?questao sio:hasValue "Sim"^^xsd:string .       
+       FILTER(substr(xsd:string(?questao), 30, 6) in ("Grupo1", "Grupo2", "Grupo3", "Grupo4", "Grupo5", "Grupo5", "Grupo6")) }
+ORDER BY ?questao
+
+
+--Questão 2. Qual o nível de risco por faixa etária de paciente?
+prefix np: <http://www.nanopub.org/nschema#> 
+prefix owl: <http://www.w3.org/2002/07/owl#> 
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix prov: <http://www.w3.org/ns/prov#> 
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix uo: <http://purl.obolibrary.org/obo/UO_> 
+prefix sio: <http://semanticscience.org/resource/> 
+prefix stato: <http://purl.obolibrary.org/obo/STATO_> 
+prefix chear: <http://hadatac.org/ont/chear#> 
+prefix hasco: <http://hadatac.org/ont/hasco#> 
+prefix obo: <http://purl.obolibrary.org/obo/> 
+prefix skos: <http://www.w3.org/2008/05/skos#> 
+prefix osm: <http://www.w3.org/2008/05/osm#> 
+prefix oersm: <http://hadatac.org/ont/oersm#> 
+prefix schema: <http://www.w3.org/2000/01/schema#> 
+
+SELECT DISTINCT ?faixaetariaidoso ?valornivelderiscoidoso ?faixaetariaadulto ?valornivelderiscoadulto ?faixaetariaadolescente ?valornivelderiscoadolescente
+WHERE {?idoso rdf:type oersm:Idoso .      
+       ?adulto rdf:type oersm:Adulto .
+       ?adolescente rdf:type oersm:Adolescente .
+       ?nivelderiscoidoso rdf:type oersm:NivelDeRisco .
+       ?nivelderiscoadulto rdf:type oersm:NivelDeRisco .  
+       ?nivelderiscoadolescente rdf:type oersm:NivelDeRisco .
+       ?idoso sio:hasValue ?faixaetariaidoso .
+       ?adulto sio:hasValue ?faixaetariaadulto .
+       ?adolescente sio:hasValue ?faixaetariaadolescente .
+       ?nivelderiscoidoso sio:hasValue ?valornivelderiscoidoso .
+       ?nivelderiscoadulto sio:hasValue ?valornivelderiscoadulto .
+       ?nivelderiscoadolescente sio:hasValue ?valornivelderiscoadolescente .}
+
+--Questão 3.  Quais níveis de cuidados em saúde mental estão relacionados aos pacientes?
+prefix np: <http://www.nanopub.org/nschema#> 
+prefix owl: <http://www.w3.org/2002/07/owl#> 
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix prov: <http://www.w3.org/ns/prov#> 
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix uo: <http://purl.obolibrary.org/obo/UO_> 
+prefix sio: <http://semanticscience.org/resource/> 
+prefix stato: <http://purl.obolibrary.org/obo/STATO_> 
+prefix chear: <http://hadatac.org/ont/chear#> 
+prefix hasco: <http://hadatac.org/ont/hasco#> 
+prefix obo: <http://purl.obolibrary.org/obo/> 
+prefix skos: <http://www.w3.org/2008/05/skos#> 
+prefix osm: <http://www.w3.org/2008/05/osm#> 
+prefix oersm: <http://hadatac.org/ont/oersm#> 
+prefix schema: <http://www.w3.org/2000/01/schema#> 
+
+select DISTINCT ?nomepaciente ?nivelbaixo ?ptsnivelbaixo ?nivelmedio ?ptsnivelmedio ?nivelalto ?ptsnivelalto 
+WHERE { ?paciente rdf:type oersm:Paciente . 
+        ?nome_do_paciente rdf:type oersm:NomeCompleto; sio:isAttributeOf ?paciente; sio:hasValue ?nomepaciente .         
+        ?nivelderisco rdfs:subClassOf oersm:NivelDeRisco; oersm:nivelDeRiscoOrienta ?pts . 
+        ?paciente oersm:pacientePossui oersm:NivelDeRisco .       
+        ?nivelbaixo rdfs:subClassOf oersm:NivelDeRiscoBaixo . 
+  		?nivelbaixo oersm:nivelDeRiscoOrienta ?ptsnivelbaixo .
+        ?nivelmedio rdfs:subClassOf oersm:NivelDeRiscoMedio . 
+  		?nivelmedio oersm:nivelDeRiscoOrienta ?ptsnivelmedio . 
+  		?nivelalto rdfs:subClassOf oersm:NivelDeRiscoAlto . 
+  		?nivelalto oersm:nivelDeRiscoOrienta ?ptsnivelalto .   }
+ORDER BY ?nomepaciente ?nivelbaixo ?ptsnivelbaixo ?nivelmedio ?ptsnivelmedio ?nivelalto ?ptsnivelalto 
+
+--Questão 4. Quais pacientes podem ser considerados em vulnerabilidade social?
+prefix np: <http://www.nanopub.org/nschema#> 
+prefix owl: <http://www.w3.org/2002/07/owl#> 
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix prov: <http://www.w3.org/ns/prov#> 
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix uo: <http://purl.obolibrary.org/obo/UO_> 
+prefix sio: <http://semanticscience.org/resource/> 
+prefix stato: <http://purl.obolibrary.org/obo/STATO_> 
+prefix chear: <http://hadatac.org/ont/chear#> 
+prefix hasco: <http://hadatac.org/ont/hasco#> 
+prefix obo: <http://purl.obolibrary.org/obo/> 
+prefix skos: <http://www.w3.org/2008/05/skos#> 
+prefix osm: <http://www.w3.org/2008/05/osm#> 
+prefix oersm: <http://hadatac.org/ont/oersm#> 
+prefix schema: <http://www.w3.org/2000/01/schema#> 
+
+select DISTINCT ?paciente ?questao 
+WHERE {    		 
+  		?questao_id rdf:type ?questao ;rdf:type oersm:VulnerabilidadeSocial ; sio:isAttributeOf ?questaorespondida ; sio:hasValue "Sim"^^xsd:string .
+        ?paciente oersm:responde oersm:Questao 
+        
+       }
+ORDER BY ?paciente
+
+--Questão 5: Quais parâmetros vão definir o nível em que ocorrerá a assistência em saúde mental?
+prefix np: <http://www.nanopub.org/nschema#> 
+prefix owl: <http://www.w3.org/2002/07/owl#> 
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix prov: <http://www.w3.org/ns/prov#> 
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix uo: <http://purl.obolibrary.org/obo/UO_> 
+prefix sio: <http://semanticscience.org/resource/> 
+prefix stato: <http://purl.obolibrary.org/obo/STATO_> 
+prefix chear: <http://hadatac.org/ont/chear#> 
+prefix hasco: <http://hadatac.org/ont/hasco#> 
+prefix obo: <http://purl.obolibrary.org/obo/> 
+prefix skos: <http://www.w3.org/2008/05/skos#> 
+prefix osm: <http://www.w3.org/2008/05/osm#> 
+prefix oersm: <http://hadatac.org/ont/oersm#> 
+prefix schema: <http://www.w3.org/2000/01/schema#> 
+
+select DISTINCT ?subject ?property ?object
+WHERE {    		 
+  		 ?subject rdf:type owl:Class .
+         ?subject oersm:parametroDefineNivelEmSaude ?object
+        
+       }
+ORDER BY ?subject
