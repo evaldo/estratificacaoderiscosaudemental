@@ -1,5 +1,5 @@
 Column,Attribute,attributeOf,Entity,Unit,Time,Relation,inRelationTo,Label,Role,Value,wasDerivedFrom,wasGeneratedBy
-ID do Paciente,oersm:IdentificadorDeCadastro,??paciente,,schema:Interger,,,,,,,,
+ID do Paciente,hasco:originalID,??paciente,,schema:Interger,,,,,,,,
 Data de Admissao,oersm:DataDeAdmissao,??dadodeinternacao,,schema:DateTime,,,,,,,,
 Nome do Paciente,oersm:NomeCompleto,??paciente,,,,,,,,,,
 Sexo,oersm:Sexo,??paciente,,,,,,,,,,
