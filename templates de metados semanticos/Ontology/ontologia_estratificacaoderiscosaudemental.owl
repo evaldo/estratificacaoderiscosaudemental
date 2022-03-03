@@ -1623,6 +1623,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/evald/ontologies/2020/11/ontriscal#PontuacaoDeRisco -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/evald/ontologies/2020/11/ontriscal#PontuacaoDeRisco">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/evald/ontologies/2020/11/ontriscal#OperacaoMatematica"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/evald/ontologies/2020/11/ontriscal#PontuacaoFinal -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/evald/ontologies/2020/11/ontriscal#PontuacaoFinal">
@@ -1775,14 +1783,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/evald/ontologies/2020/11/ontriscal#Sintomatologia">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/evald/ontologies/2020/11/ontriscal#SinalESintoma"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/evald/ontologies/2020/11/ontriscal#Soma -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/evald/ontologies/2020/11/ontriscal#Soma">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/evald/ontologies/2020/11/ontriscal#OperacaoMatematica"/>
     </owl:Class>
     
 
